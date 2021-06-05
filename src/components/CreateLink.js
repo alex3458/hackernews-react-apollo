@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import { useMutation, gql } from "@apollo/client";
 
 const CREATE_LINK_MUTATION = gql`
@@ -12,6 +13,7 @@ const CREATE_LINK_MUTATION = gql`
   }
 `;
 const CreateLink = () => {
+  const history = useHistory();
   const [formState, setFormState] = useState({
     description: "",
     url: "",
@@ -21,6 +23,7 @@ const CreateLink = () => {
       description: formState.description,
       url: formState.url,
     },
+    onCompleted: () => history.push("/"),
   });
   return (
     <div>
